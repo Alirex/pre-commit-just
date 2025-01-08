@@ -1,5 +1,6 @@
+# Use the same in .pre-commit-config.yaml
 - id: format-justfile
-  name: Format Justfiles
+  name: Format Justfile files
   language: script
   entry: pre-commit-just.sh
-  files: '\.?[jJ]ustfile'
+  files: ".?[jJ]ust(file)?$"
