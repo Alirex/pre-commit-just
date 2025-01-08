@@ -14,6 +14,10 @@ set -o nounset
 # Check if 'just' binary is available.
 if ! command -v just >/dev/null 2>&1; then
   echo >&2 "Error: 'just' binary not found; pre-commit hook will not run."
+
+  # Ensure that tool is available in the system.
+  #   "Just" can be installed in the CI/CD pipeline.
+  #   See example in the ".github/workflows".
   exit 1
 fi
 # [pre_check]-[END]

@@ -2,12 +2,17 @@
 # https://www.rust-lang.org/tools/install
 
 # Install Rust
-@rust-i-install:
-    if ! command -v rustup &> /dev/null; then \
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y; \
-    else \
-        rustup update; \
+rust-i-install:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if ! command -v rustup &> /dev/null; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y;
+    else
+        rustup update;
     fi
+
+    rustup --version
+    rustc --version
 
 # Install updater for installed rust executables
 # https://crates.io/crates/cargo-update

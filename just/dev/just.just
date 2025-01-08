@@ -10,12 +10,15 @@
 # Install via cargo used, because it's more simple and easy to update. Also, it's better installed.
 
 # Install Just
-@just-i-install:
-    if ! command -v just &> /dev/null; then \
-        cargo install just; \
-    else \
-        cargo install-update just; \
+just-i-install:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if ! command -v just &> /dev/null; then
+        cargo install just
+    else
+        cargo install-update just
     fi
+
     just --version
 
 # Install "Just" completions for bash. If needed.
