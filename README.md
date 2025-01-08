@@ -12,7 +12,7 @@ You must have [just] installed on your system for this hook to work.
 
 ```yaml
 - repo: https://github.com/Alirex/pre-commit-just
-  rev: "v0.2"
+  rev: "v0.2.1"
   hooks:
     - id: format-justfile
 ```
