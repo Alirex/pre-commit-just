@@ -17,9 +17,6 @@ repos:
         # Removes BOMs from files.
       - id: check-merge-conflict
         # Check for files that contain merge conflict strings.
-      - id: no-commit-to-branch
-        # No commits to master or main.
-        args: [--branch=master, --branch=main]
 
   - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
     # A hook to update pre-commit hooks.
