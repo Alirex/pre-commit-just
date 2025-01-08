@@ -3,12 +3,16 @@
 # Then activate new environment just in place
 
 # Install & Update UV for more better Python environments
-@uv-i-install:
-    if ! command -v rustup &> /dev/null; then \
-        curl -LsSf https://astral.sh/uv/install.sh | sh; \
-    else \
-        uv self update; \
+uv-i-install:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if ! command -v uv &> /dev/null; then
+        curl -LsSf https://astral.sh/uv/install.sh | sh;
+    else
+        uv self update;
     fi
+
+    uv --version
 
 # Install UV completions for bash. If needed.
 # https://docs.astral.sh/uv/getting-started/installation/#shell-autocompletion

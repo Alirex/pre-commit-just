@@ -42,4 +42,4 @@ pre-commit-i-run:
 
 # Pre-commit run for folder:
 # https://pre-commit.com/#pre-commit-run:~:text=git%20ls%2Dfiles%20%2D%2D%20%27*.py%27%20%7C%20xargs%20pre%2Dcommit%20run%20%2D%2Dfiles
-# git ls-files -- apps/users/ | xargs pre-commit run --files
+# git ls-files -- your/folder | xargs pre-commit run --files
