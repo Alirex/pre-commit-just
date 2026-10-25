@@ -1,0 +1,5 @@
+# Strictest mode: every optional check on.
+enable=all
+external-sources=true
+# SC2310 / SC2312: the scripts test commands on purpose (`if ! cmd`, `|| fail`).
+disable=SC2310,SC2312

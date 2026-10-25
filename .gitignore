@@ -1,2 +1,3 @@
-# Because it is a simple project. Otherwise, it can be included in the repository.
+# IDE state (JetBrains, VS Code) stays local.
 .idea/
+.vscode/

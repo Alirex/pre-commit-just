@@ -1,0 +1,3 @@
+# Structural markdown checks; line length is off (prose is wrapped by hand).
+default: true
+MD013: false # line length
