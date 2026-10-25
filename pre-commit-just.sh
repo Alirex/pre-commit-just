@@ -1,44 +1,36 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Format Justfiles with `just --fmt` (pre-commit and prek hook, entry of `format-justfile`).
+#
+# Usage: pre-commit-just.sh <file>...
+#
+# For each file: check the formatting, rewrite it when it differs, and fail only when
+# `just` cannot parse or write the file (the error is shown). The hook runner then
+# fails the commit because the files changed. Needs `just` on PATH; works with bash 3.2.
 
-# [bash_init]-[BEGIN]
-# Exit whenever it encounters an error, also known as a non–zero exit code.
 set -o errexit
-# Return value of a pipeline is the value of the last (rightmost) command to exit with a non-zero status,
-#   or zero if all commands in the pipeline exit successfully.
 set -o pipefail
-# Treat unset variables and parameters other than the special parameters ‘@’ or ‘*’ as an error when performing parameter expansion.
 set -o nounset
-# [bash_init]-[END]
 
-# [pre_check]-[BEGIN]
-# Check if 'just' binary is available.
 if ! command -v just >/dev/null 2>&1; then
-  echo >&2 "Error: 'just' binary not found; pre-commit hook will not run."
-
-  # Ensure that tool is available in the system.
-  #   "Just" can be installed in the CI/CD pipeline.
-  #   See example in the ".github/workflows".
+  # Install `just` in the CI job too, see https://just.systems/man/en/packages.html.
+  echo >&2 "Error: 'just' binary not found; the format-justfile hook cannot run."
   exit 1
 fi
-# [pre_check]-[END]
 
-# [action]-[BEGIN]
+# `--unstable` is needed by `just` older than 1.38 and ignored by newer ones.
 # https://just.systems/man/en/formatting-and-dumping-justfiles.html
-
 status=0
-
 for file in "$@"; do
-  if ! just --fmt --unstable --check --justfile "$file" >/dev/null 2>&1; then
-    echo >&2 "Formatting required for ${file}. Applying fixes..."
-
-    if just --fmt --unstable --justfile "$file" >/dev/null 2>&1; then
-      echo >&2 "Successfully formatted ${file}."
-    else
-      echo >&2 "Error: Failed to format ${file}."
-      status=1
-    fi
+  if just --fmt --unstable --check --justfile "${file}" >/dev/null 2>&1; then
+    continue
+  fi
+  echo >&2 "Formatting required for ${file}. Applying fixes..."
+  if just --fmt --unstable --justfile "${file}"; then
+    echo >&2 "Successfully formatted ${file}."
+  else
+    echo >&2 "Error: Failed to format ${file}."
+    status=1
   fi
 done
 
-exit $status
-# [action]-[END]
+exit "${status}"
