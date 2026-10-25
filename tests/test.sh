@@ -64,8 +64,8 @@ if message="$(PATH=/nonexistent /bin/bash "${hook}" "${work}/direct/ok.just" 2>&
   fail "a missing just must fail"
 fi
 case "${message}" in
-*"'just' binary not found"*) ;;
-*) fail "missing-just message not shown: ${message}" ;;
+  *"'just' binary not found"*) ;;
+  *) fail "missing-just message not shown: ${message}" ;;
 esac
 
 # 5. Through prek: the hook picks the right files and rewrites them.

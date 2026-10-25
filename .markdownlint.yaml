@@ -1,3 +1,4 @@
 # Structural markdown checks; line length is off (prose is wrapped by hand).
 default: true
 MD013: false # line length
+MD041: false # first line a heading (CLAUDE.md is `@AGENTS.md`)
