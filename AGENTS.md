@@ -33,5 +33,10 @@ registry: a release is a SemVer git tag plus a GitHub release.
 
 ## Reasoning
 
+- To find HQ practices or backlog items, call the `hq` MCP tools first (`practices_for`, `practices_get`,
+  `practices_search`, `backlog_list`, `backlog_get`; load them with ToolSearch `hq`); fall back to the HQ checkout's
+  files and `just` when the server is not connected.
+  [Reasoning](https://github.com/evocaslab/hq/blob/main/practices/agent-instructions.md#use-the-mcp-for-practices-and-tasks).
+
 Shared practices: <https://github.com/evocaslab/hq/tree/main/practices> (`quality-gate.md`, `just-task-runner.md`,
 `releases-and-versions.md`, `supply-chain-security.md`, `testing.md`, `gitignore-and-ide.md`).
