@@ -4,6 +4,8 @@ A pre-commit / prek hook repo: `format-justfile` runs `just --fmt` on `justfile`
 files. The hook is `.pre-commit-hooks.yaml` (entry `pre-commit-just.sh`, language `script`). Pure bash, no package
 registry: a release is a SemVer git tag plus a GitHub release.
 
+- The README is the front door: it starts with how to run the repo and is updated in the same commit as any change to a command, recipe, config key, check or layout; run its Quick start once before landing ([HQ docs-match-code](https://github.com/evocaslab/hq/blob/main/practices/docs-match-code.md#the-readme-is-the-front-door)).
+
 ## Layout
 
 - `pre-commit-just.sh`: the hook. Bash 3.2 compatible (macOS), `set -euo pipefail`, shellcheck `enable=all`, shfmt.
